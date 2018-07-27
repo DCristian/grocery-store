@@ -14,8 +14,10 @@ export class ProductService {
     private db: AngularFireDatabase
   ) {}
 
-  list(): AngularFireList<Product>  {
-    return this.db.list(this.baseUrl);
+  list(category: string): AngularFireList<Product>  {
+    return this.db.list(this.baseUrl, ref => {
+      return category ? ref.orderByChild('category').equalTo(category) : ref;
+    });
   }
 
   add(data: Product): ThenableReference {
