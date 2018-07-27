@@ -17,6 +17,8 @@ import { AuthService } from './service/auth.service';
 import { AuthGuard } from './guard/auth.guard';
 import { AdminAuthGuard } from './guard/admin-auth.guard';
 import { UserService } from './service/user.service';
+import { CategoryService } from './service/category.service';
+import { ProductService } from './service/product.service';
 
 // Components
 import { AppComponent } from './app.component';
@@ -30,6 +32,9 @@ import { OrderSuccessComponent } from './order-success/order-success.component';
 import { MyOrdersComponent } from './my-orders/my-orders.component';
 import { AdminOrdersComponent } from './admin-orders/admin-orders.component';
 import { AdminProductsComponent } from './admin-products/admin-products.component';
+import { AddProductComponent } from './add-product/add-product.component';
+import { EditProductComponent } from './edit-product/edit-product.component';
+import { ProductComponent } from './product/product.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +48,10 @@ import { AdminProductsComponent } from './admin-products/admin-products.componen
     OrderSuccessComponent,
     MyOrdersComponent,
     AdminOrdersComponent,
-    AdminProductsComponent
+    AdminProductsComponent,
+    AddProductComponent,
+    EditProductComponent,
+    ProductComponent
   ],
   imports: [
     BrowserModule,
@@ -93,6 +101,16 @@ import { AdminProductsComponent } from './admin-products/admin-products.componen
         canActivate: [AuthGuard, AdminAuthGuard]
       },
       {
+        path: 'admin/products/new',
+        component: AddProductComponent,
+        canActivate: [AuthGuard, AdminAuthGuard]
+      },
+      {
+        path: 'admin/products/:productUid',
+        component: EditProductComponent,
+        canActivate: [AuthGuard, AdminAuthGuard]
+      },
+      {
         path: '**',
         component: NotFoundComponent
       },
@@ -102,7 +120,9 @@ import { AdminProductsComponent } from './admin-products/admin-products.componen
     AuthService,
     AuthGuard,
     AdminAuthGuard,
-    UserService
+    UserService,
+    CategoryService,
+    ProductService
   ],
   bootstrap: [AppComponent]
 })
