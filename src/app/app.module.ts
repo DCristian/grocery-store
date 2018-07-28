@@ -19,6 +19,7 @@ import { AdminAuthGuard } from './guard/admin-auth.guard';
 import { UserService } from './service/user.service';
 import { CategoryService } from './service/category.service';
 import { ProductService } from './service/product.service';
+import { ShoppingCartService } from './service/shopping-cart.service';
 
 // Components
 import { AppComponent } from './app.component';
@@ -35,6 +36,8 @@ import { AdminProductsComponent } from './admin-products/admin-products.componen
 import { AddProductComponent } from './add-product/add-product.component';
 import { EditProductComponent } from './edit-product/edit-product.component';
 import { ProductComponent } from './product/product.component';
+import { ProductCatalogComponent } from './product-catalog/product-catalog.component';
+import { ProductQuantityComponent } from './product-quantity/product-quantity.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +54,9 @@ import { ProductComponent } from './product/product.component';
     AdminProductsComponent,
     AddProductComponent,
     EditProductComponent,
-    ProductComponent
+    ProductComponent,
+    ProductCatalogComponent,
+    ProductQuantityComponent
   ],
   imports: [
     BrowserModule,
@@ -122,7 +127,8 @@ import { ProductComponent } from './product/product.component';
     AdminAuthGuard,
     UserService,
     CategoryService,
-    ProductService
+    ProductService,
+    ShoppingCartService
   ],
   bootstrap: [AppComponent]
 })

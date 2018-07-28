@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { take } from 'rxjs/operators';
 
@@ -25,7 +25,6 @@ export class EditProductComponent implements OnInit {
     this.uid = this.route.snapshot.paramMap.get('productUid');
     this.productService
       .get(this.uid)
-      .valueChanges()
       .pipe(take(1))
       .subscribe(product => this.product = product);
   }

@@ -16,13 +16,6 @@
   </div>
 
   <div class="card-columns col-md-10">
-    <div class="card" *ngFor="let product of products$ | async">
-      <img class="card-img-top" [src]="product.imageUrl">
-      <div class="card-body">
-        <h5 class="card-title">{{ product.title }}</h5>
-        <p class="card-text">{{ product.price | currency:'USD':'symbol' }}</p>
-      </div>
-      <button type="button" class="btn btn-primary btn-block">Add to Card</button>
-    </div>
+    <app-product-catalog *ngFor="let product of products$ | async" [product]="product" [cart]="cart"></app-product-catalog>
   </div>
 </div>

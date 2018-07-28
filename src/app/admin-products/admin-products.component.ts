@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 
 import { Product } from '../model/product';
 import { ProductService } from '../service/product.service';
@@ -17,12 +16,6 @@ export class AdminProductsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.products$ = this.productService.list().snapshotChanges()
-      .pipe(
-          map(actions => actions.map(a => {
-          const $key = a.payload.key;
-          return { $key, ...a.payload.val() };
-        }))
-      );
+    this.products$ = this.productService.list();
   }
 }

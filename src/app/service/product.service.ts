@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
-import { AngularFireDatabase, AngularFireList, AngularFireObject } from 'angularfire2/database';
+import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import ThenableReference from 'firebase/database';
+import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 import { Product } from '../model/product';
 
@@ -14,18 +16,39 @@ export class ProductService {
     private db: AngularFireDatabase
   ) {}
 
-  list(category: string): AngularFireList<Product>  {
+  private fireList(category: string = null): AngularFireList<Product>  {
     return this.db.list(this.baseUrl, ref => {
       return category ? ref.orderByChild('category').equalTo(category) : ref;
     });
+  }
+
+  list(category: string = null): Observable<Product[]>  {
+    let list$ = this.fireList(category);
+
+    return list$.snapshotChanges()
+      .pipe(
+        map(actions => actions.map(a => {
+          const $key = a.payload.key;
+          return { $key, ...a.payload.val() };
+        }))
+      );
   }
 
   add(data: Product): ThenableReference {
     return this.db.list(this.baseUrl).push(data);
   }
 
-  get(uid: string): AngularFireObject<Product> {
-    return this.db.object(this.baseUrl + '/' + uid);
+  get(uid: string): Observable<Product> {
+    let object$ = this.db.object(this.baseUrl + '/' + uid);
+
+    return object$
+      .snapshotChanges()
+      .pipe(
+        map((a) => {
+          const $key = a.payload.key;
+          return { $key, ...(a.payload.val() as Product) };
+        })
+      );
   }
 
   update(uid: string, data: Product): Promise<void> {
