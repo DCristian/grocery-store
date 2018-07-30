@@ -1,3 +1,69 @@
-<p>
-  check-out works!
-</p>
+<h1>Shipping</h1>
+<div class="row">
+  <div [formGroup]="shippingForm" class="col-md-6">
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input type="text" class="form-control" id="name" placeholder="Enter name"
+             formControlName="name"
+      >
+      <div class="invalid-feedback" *ngIf="name.touched && !name.valid">
+        <div *ngIf="name.hasError('required')">Please provide a name.</div>
+      </div>
+    </div>
+
+    <div formGroupName="address">
+      <div class="form-group">
+        <label for="address">Address</label>
+        <input type="text" class="form-control" id="address" placeholder="Line 1"
+               formControlName="line1"
+        >
+        <div class="invalid-feedback" *ngIf="addressLine1.touched && !addressLine1.valid">
+          <div *ngIf="addressLine1.hasError('required')">Please provide an address.</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <input type="text" class="form-control" placeholder="Line 2"
+               formControlName="line2"
+        >
+      </div>
+
+      <div class="form-group">
+        <label for="city">City</label>
+        <input type="text" class="form-control" id="city" placeholder="Enter city"
+               formControlName="city"
+        >
+        <div class="invalid-feedback" *ngIf="addressCity.touched && !addressCity.valid">
+          <div *ngIf="addressCity.hasError('required')">Please provide a city.</div>
+        </div>
+      </div>
+    </div>
+
+    <button class="btn btn-primary" (click)="submit()">Place Order</button>
+  </div>
+
+  <div class="col-md-6">
+    <div class="card" *ngIf="cart">
+      <div class="card-body">
+        <h5 class="card-title">Order Summary</h5>
+        <p class="card-text">You have {{ itemsCount }} items in your shopping cart</p>
+
+        <table class="table">
+          <tbody>
+            <tr *ngFor="let item of items">
+              <td>{{ item.quantity }} x {{ item.product.title }}</td>
+              <td class="text-right">{{ item.product.price*item.quantity | currency:'USD':'symbol' }}</td>
+            </tr>
+          </tbody>
+
+          <tfoot>
+            <tr>
+              <th>Total</th>
+              <th class="text-right">{{ itemsTotalPrice | currency:'USD':'symbol' }}</th>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

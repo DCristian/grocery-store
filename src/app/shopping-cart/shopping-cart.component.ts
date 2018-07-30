@@ -25,25 +25,8 @@ export class ShoppingCartComponent implements OnInit {
       this.cart = cart;
       this.itemsCount = ShoppingCardUtility.getTotalItemsCount(cart);
       this.itemsTotalPrice = ShoppingCardUtility.getTotalItemsPrice(cart);
-      this.setItems();
+      this.items = ShoppingCardUtility.getItems(cart);
     });
-  }
-
-  setItems() {
-    this.items = [];
-
-    if (!this.cart.items) {
-      return;
-    }
-
-    for (let key in this.cart.items) {
-      if (!this.cart.items.hasOwnProperty(key)) {
-        continue;
-      }
-
-      this.cart.items[key].product.$key = key;
-      this.items.push(this.cart.items[key]);
-    }
   }
 
   async clearCart(): Promise<void> {
