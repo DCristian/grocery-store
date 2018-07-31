@@ -11,7 +11,7 @@ import { ShoppingCardUtility } from '../../../shared/utilities/shopping-card.uti
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-  isNavbarCollapsed: false;
+  isNavbarCollapsed = false;
   appUser: AppUser;
   cartItemsCount = 0;
 

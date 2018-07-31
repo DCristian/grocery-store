@@ -3,6 +3,8 @@ import { Observable } from 'rxjs';
 
 import { OrderService } from '../../../shared/services/order.service';
 import { Order } from '../../../shared/models/order';
+import { AuthService } from '../../../shared/services/auth.service';
+import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-my-orders',
@@ -12,10 +14,13 @@ export class MyOrdersPageComponent implements OnInit {
   orders: Observable<Order[]>;
 
   constructor(
-    private orderService: OrderService
+    private orderService: OrderService,
+    private authService: AuthService
   ) { }
 
   ngOnInit() {
-    this.orders = this.orderService.list();
+    this.authService.getUser$().pipe(take(1)).subscribe(user => {
+      this.orders = this.orderService.list(user.uid);
+    });
   }
 }
