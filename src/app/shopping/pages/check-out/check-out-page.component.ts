@@ -76,7 +76,7 @@ export class CheckOutPageComponent implements OnInit, OnDestroy {
       return;
     }
 
-    let request = OrderUtility.getorderRequest(this.userId, this.shippingForm.getRawValue(), this.items);
+    let request = OrderUtility.getOrderRequest(this.userId, this.shippingForm.getRawValue(), this.items);
 
     // TODO: add transaction
     let result = await this.orderService.save(request);

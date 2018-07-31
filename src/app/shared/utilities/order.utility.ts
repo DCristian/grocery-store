@@ -1,11 +1,12 @@
 import { Order } from '../models/order';
 
 export class OrderUtility {
-  static getorderRequest(userId: string, shipping: any, items: any[]): Order {
+  static getOrderRequest(userId: string, shipping: any, items: any[]): Order {
     return {
       userId: userId,
       datePlaced: new Date().getTime(),
       shipping: shipping,
+      totalPrice: items.reduce((total, item) => total + item.quantity * item.product.price, 0),
       items: items.map(item => {
         return {
           product: {

@@ -34,7 +34,7 @@ import { ProductFormComponent } from './components/product-form/product-form.com
         canActivate: [AuthGuard, AdminAuthGuard]
       },
       {
-        path: 'admin/products/:productUid',
+        path: 'admin/products/:id',
         component: EditProductPageComponent,
         canActivate: [AuthGuard, AdminAuthGuard]
       },

@@ -38,8 +38,8 @@ export class ProductService {
     return this.db.list(this.baseUrl).push(data);
   }
 
-  get(uid: string): Observable<Product> {
-    let object$ = this.db.object(this.baseUrl + '/' + uid);
+  get(id: string): Observable<Product> {
+    let object$ = this.db.object(this.baseUrl + '/' + id);
 
     return object$
       .snapshotChanges()

@@ -11,7 +11,9 @@
     <tr *ngFor="let order of orders | async">
       <td>{{ order.shipping.name }}</td>
       <td>{{ order.datePlaced | date:'LLL d, y' }}</td>
-      <td>View</td>
+      <td>
+        <a [routerLink]="['/order/', order.$key]">View</a>
+      </td>
     </tr>
   </tbody>
 </table>

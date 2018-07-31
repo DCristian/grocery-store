@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 
 import { OrderService } from '../../../shared/services/order.service';
 import { Order } from '../../../shared/models/order';
@@ -16,6 +16,6 @@ export class MyOrdersPageComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.orders = this.orderService.list().valueChanges();
+    this.orders = this.orderService.list();
   }
 }

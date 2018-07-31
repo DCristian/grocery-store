@@ -10,9 +10,10 @@ import { AuthGuard } from '../shared/guards/auth.guard';
 import { ShoppingCartPageComponent } from './pages/shopping-cart/shopping-cart-page.component';
 import { HomePageComponent } from './pages/home/home-page.component';
 import { CheckOutPageComponent } from './pages/check-out/check-out-page.component';
-import { OrderSuccesspageComponent } from './pages/order-success/order-successpage.component';
+import { OrderSuccessPageComponent } from './pages/order-success/order-success-page.component';
 import { MyOrdersPageComponent } from './pages/my-orders/my-orders-page.component';
 import { ProductCatalogComponent } from './components/product-catalog/product-catalog.component';
+import { OrderPageComponent } from './pages/order/order-page.component';
 
 @NgModule({
   imports: [
@@ -33,12 +34,17 @@ import { ProductCatalogComponent } from './components/product-catalog/product-ca
       },
       {
         path: 'order-success/:id',
-        component: OrderSuccesspageComponent,
+        component: OrderSuccessPageComponent,
         canActivate: [AuthGuard]
       },
       {
         path: 'my/orders',
         component: MyOrdersPageComponent,
+        canActivate: [AuthGuard]
+      },
+      {
+        path: 'order/:id',
+        component: OrderPageComponent,
         canActivate: [AuthGuard]
       },
     ])
@@ -47,9 +53,10 @@ import { ProductCatalogComponent } from './components/product-catalog/product-ca
     ShoppingCartPageComponent,
     HomePageComponent,
     CheckOutPageComponent,
-    OrderSuccesspageComponent,
+    OrderSuccessPageComponent,
     MyOrdersPageComponent,
-    ProductCatalogComponent
+    ProductCatalogComponent,
+    OrderPageComponent
   ]
 })
 export class ShoppingModule { }

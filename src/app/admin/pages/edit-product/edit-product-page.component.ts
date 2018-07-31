@@ -11,7 +11,7 @@ import { ProductFormComponent } from '../../components/product-form/product-form
   templateUrl: './edit-product-page.component.html'
 })
 export class EditProductPageComponent implements OnInit {
-  uid: string;
+  id: string;
   product: Product;
   @ViewChild('form') private productComponent: ProductFormComponent;
 
@@ -22,9 +22,9 @@ export class EditProductPageComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.uid = this.route.snapshot.paramMap.get('productUid');
+    this.id = this.route.snapshot.paramMap.get('id');
     this.productService
-      .get(this.uid)
+      .get(this.id)
       .pipe(take(1))
       .subscribe(product => this.product = product);
   }
@@ -39,7 +39,7 @@ export class EditProductPageComponent implements OnInit {
     let request = form.getRawValue();
     request.price = +request.price;
 
-    await this.productService.update(this.uid, request);
+    await this.productService.update(this.id, request);
     await this.router.navigate(['/admin/products']);
   }
 
@@ -48,7 +48,7 @@ export class EditProductPageComponent implements OnInit {
       return;
     }
 
-    await this.productService.delete(this.uid);
+    await this.productService.delete(this.id);
     await this.router.navigate(['/admin/products']);
   }
 }
