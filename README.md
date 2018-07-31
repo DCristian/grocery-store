@@ -1,8 +1,25 @@
 # Grocery Store
 
-A grocery store website developed using Angular 6 and Firebase.
+A grocery store website build with Angular 6 and Firebase.
 
-Demo: https://grocery-shop-f23eb.firebaseapp.com/
+Try the demo at [grocery-shop-f23eb.firebaseapp.com](https://grocery-shop-f23eb.firebaseapp.com/ "Title")
+
+## Quick Start
+
+#### Install Angular CLI
+
+``` shell
+$ npm install -g @angular/cli
+```
+
+#### Clone the app, install package dependencies, and start the dev server @ `http://localhost:4200/`
+
+``` shell
+$ git clone git@github.com:DCristian/grocery-store.git
+$ cd grocery-store
+$ npm install
+$ ng serve
+```
 
 ## Development server
 
